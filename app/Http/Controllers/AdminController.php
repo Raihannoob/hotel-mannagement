@@ -56,7 +56,10 @@ public function add_room(Request $request){
 
    return redirect()->back();
 }
-
-
+//we use compact to pass data in the disired page 
+public function view_room(){
+    $data =Rooom::all();
+    return view('admin.view_room',compact('data'));
+}
 
 }
