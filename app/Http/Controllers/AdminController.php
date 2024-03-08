@@ -50,7 +50,7 @@ public function add_room(Request $request){
          $file->move('uploads/rooms/', $filename);
          $data->image = $filename;
      }
-     
+
     $data->save();
 
    return redirect()->back();
@@ -68,5 +68,38 @@ public function room_delete($id){
     return redirect()->back();
     
 }
+
+
+public function room_update($id){
+    $data = Rooom::find($id);
+    return view('admin.room_update',compact('data'));
+    
+}
+//update function is here 
+public function edit_room(Request $request,$id){
+    $data = Rooom::find($id);
+    $data-> room_tittle = $request->tittle;
+    $data-> description = $request->Description;
+    $data-> price = $request->Price;
+    $data-> room_type = $request->type;
+    $data-> wifi = $request->wifi;
+    $data-> image = $request->image;
+
+   
+     if($request->hasfile('image'))
+     {
+         $file = $request->file('image');
+         $extenstion = $file->getClientOriginalExtension();
+         $filename = time().'.'.$extenstion;
+         $file->move('uploads/rooms/', $filename);
+         $data->image = $filename;
+     }
+
+    $data->save();
+
+   return redirect()->back();
+}
+
+
 
 }

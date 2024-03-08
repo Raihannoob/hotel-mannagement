@@ -39,7 +39,9 @@
                         <th class="th_design">wifi</th>
                         <th class="th_design">Image</th>
                         <th class="th_design">Created At</th>
+                        <th class="th_design">Update</th>
                         <th class="th_design">Delete</th>
+
                     </tr>
 
                     @foreach ($data as $item)
@@ -51,9 +53,12 @@
                         <td class="td_design">{{$item->room_type}}</td>
                         <td class="td_design">{{$item->wifi}}</td>
                         <td class="td_design">
-                            <img width="100" src="/upload/rooms/{{$item->image}}">
+                            <img width="100" src="/uploads/rooms/{{$item->image}} " alt="" />
                         </td>
                         <td class="td_design">{{$item->created_at}}</td>
+                        <td class="td_design">
+                            <a onclick="return confirm('are you sure to Update this?')" class="btn btn-warning" href="{{url('room_update',$item->id)}}">Update</a>
+                        </td>
                         <td class="td_design">
                             <a onclick="return confirm('are you sure to delete this?')" class="btn btn-danger" href="{{url('room_delete',$item->id)}}">Delete</a>
                         </td>
