@@ -6,6 +6,7 @@
   <body>
     @include('admin.header')
     @include('admin.SidebarNavigation')
-    @include('admin.javascript')
+    @include('admin.body')
+    @include('admin.footer')
   </body>
 </html>

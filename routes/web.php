@@ -18,16 +18,10 @@ use App\Http\Controllers\AdminController;
 //     return view('home.index');
 // });
 
-route ::get('/',[AdminController::class,'home'])->name('home');
+route ::get('/',[AdminController::class,'home']);
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+route::get('/home', [AdminController::class,'index'])->name('home');
 
-Route::get('/home', [AdminController::class,'index']);
+route::get('/create_room', [AdminController::class,'create_room']);
+
+route::post('/add_room', [AdminController::class,'add_room']);
