@@ -41,17 +41,16 @@ public function add_room(Request $request){
     $data-> wifi = $request->wifi;
     $data-> image = $request->image;
 
-    //  //Uploading Image Functionality 
-    //  if($request->has('image')){
-    //     $image  = $request->image;
-    //     if($image){
-    //         $imageName = time().'.'.$image->getClientOriginalExtension();
-    //         $request->image->move('RoomImage',$imageName );
-    //         $data -> $image = $imageName;
-    
-    //     }
-    //  }
-    
+   
+     if($request->hasfile('image'))
+     {
+         $file = $request->file('image');
+         $extenstion = $file->getClientOriginalExtension();
+         $filename = time().'.'.$extenstion;
+         $file->move('uploads/rooms/', $filename);
+         $data->image = $filename;
+     }
+     
     $data->save();
 
    return redirect()->back();
@@ -60,6 +59,14 @@ public function add_room(Request $request){
 public function view_room(){
     $data =Rooom::all();
     return view('admin.view_room',compact('data'));
+}
+
+//Delete functionality in table 
+public function room_delete($id){
+    $data =Rooom::find($id);
+    $data->delete();
+    return redirect()->back();
+    
 }
 
 }
