@@ -54,8 +54,8 @@ public function add_room(Request $request){
      }
 
     $data->save();
-
-   return redirect()->back();
+    return redirect()->route('viewroom');
+   
 }
 //we use compact to pass data in the disired page 
 public function view_room(){
