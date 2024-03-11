@@ -14,24 +14,40 @@ public function room_details($id){
     return view('home.room_details',compact('room'));
 }
 
-public function add_booking(Request $request){
-    //end date must me bigger then startdate
+public function add_booking(Request $request)
+{
+    // Ensure that the end date is greater than the start date
     $request->validate([
         'startDate' => 'required|date',
-        'endDate'=>'date|after:startDate' ,
+        'endDate' => 'required|date|after:startDate',
     ]);
 
-
     $data = new RoomBookingDetail();
-    $data->room_id=$request->roomid;
-    $data->name= $request->name;
-    $data->email= $request->email;
-    $data->phone= $request->phone;
-    $data->startDate= $request->startDate;
-    $data->endDate= $request->endDate;
-    $data->save();
-    return redirect()->back()->with('message','Room Booked Succesfully');
+    $id = $request->id;
+    $data->room_id = $request->roomid;
+    $data->name = $request->name;
+    $data->email = $request->email;
+    $data->phone = $request->phone;
+
+    $start_Date = $request->startDate;
+    $end_Date = $request->endDate;
+
+    // Check if the room is already booked for the selected dates
+    $isBooked = RoomBookingDetail::where('room_id',$request->roomid)
+        ->where('startDate', '<=', $end_Date)
+        ->where('endDate', '>=', $start_Date)
+        ->exists();
+
+    if ($isBooked) {
+        return redirect()->back()->with('message', 'The room is already booked. Please select another date.');
+    } else {
+        $data->startDate = $start_Date;
+        $data->endDate = $end_Date;
+        $data->save();
+        return redirect()->back()->with('message', 'Room Booked Successfully');
+    }
 }
+
 
 
 
