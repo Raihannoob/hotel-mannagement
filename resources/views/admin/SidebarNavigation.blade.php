@@ -19,6 +19,7 @@
                 <li><a href="#">Page</a></li>
               </ul>
             </li>
+          <li class="active"><a href={{route('bookings')}}> <i class="icon-"></i>Booking</a></li>  
     </ul>
    
   </nav>

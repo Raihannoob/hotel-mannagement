@@ -34,6 +34,8 @@ route::get('/room_update/{id}', [AdminController::class,'room_update'])-> name (
 
 route::post('/edit_room/{id}', [AdminController::class,'edit_room']) -> name ('editroom')   ;
 
-route::get('/room_details/{id}', [HomeController::class,'room_details']) -> name ('roomdetails')    ;
+route::get('/room_details/{id}', [HomeController::class,'room_details']) -> name ('roomdetails');
 
 route::post('/add_booking', [HomeController::class,'add_booking'])->name('add.booking');
+
+route::get('/bookingdetails', [AdminController::class,'booking_details']) -> name ('bookings');

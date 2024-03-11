@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\user;
 use App\Models\Rooom;
 use Illuminate\Support\Facades\Auth;
+use App\Models\RoomBookingDetail;
 
 
 class AdminController extends Controller
@@ -100,6 +101,11 @@ public function edit_room(Request $request,$id){
     $data->save();
 
    return redirect()->back();
+}
+
+public function booking_details(){
+    $data=  RoomBookingDetail::all();
+    return view('admin.bookings',compact('data'));
 }
 
 
