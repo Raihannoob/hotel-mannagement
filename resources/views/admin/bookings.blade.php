@@ -41,6 +41,7 @@
                                     <th class="th_design">Arrival Date</th>
                                     <th class="th_design">Leaving Date</th>
                                     <th class="th_design">Status</th>
+                                    <th class="th_design">Delete</th>
                                 </tr>
             
                              @foreach ($data as $item)
@@ -58,6 +59,9 @@
                                     <td class="td_design">{{$item->startDate}}</td>
                                     <td class="td_design">{{$item->endDate}}</td>
                                     <td class="td_design">{{$item->status}}</td>
+                                    <td class="td_design">
+                                        <a onclick="return confirm('are you sure to delete this?')" class="btn btn-danger" href="{{url('booking_delete',$item->id)}}">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>

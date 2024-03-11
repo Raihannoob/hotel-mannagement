@@ -109,5 +109,11 @@ public function booking_details(){
 }
 
 
+public function booking_delete($id){
+    $data =RoomBookingDetail::find($id);
+    $data->delete();
+    return redirect()->back();
+}
+
 
 }

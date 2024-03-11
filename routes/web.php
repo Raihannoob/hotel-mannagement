@@ -39,3 +39,5 @@ route::get('/room_details/{id}', [HomeController::class,'room_details']) -> name
 route::post('/add_booking', [HomeController::class,'add_booking'])->name('add.booking');
 
 route::get('/bookingdetails', [AdminController::class,'booking_details']) -> name ('bookings');
+
+route::get('/booking_delete/{id}', [AdminController::class,'booking_delete'])-> name ('bookingdelete') ;
