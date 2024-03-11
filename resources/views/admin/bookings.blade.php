@@ -42,6 +42,7 @@
                                     <th class="th_design">Leaving Date</th>
                                     <th class="th_design">Status</th>
                                     <th class="th_design">Delete</th>
+                                    <th class="th_design">Status Update</th>
                                 </tr>
             
                              @foreach ($data as $item)
@@ -58,9 +59,34 @@
                                     <td class="td_design">{{$item->email}}</td>
                                     <td class="td_design">{{$item->startDate}}</td>
                                     <td class="td_design">{{$item->endDate}}</td>
-                                    <td class="td_design">{{$item->status}}</td>
+                                    <td class="td_design">
+                                        @if( $item -> status == 'Approved')
+                                            <span style="color: skyblue;">
+                                                Approved
+                                            </span>
+                                        @endif
+                                        @if($item -> status == 'Rejected')
+                                            <span style="color: red;">
+                                                    Rejected
+                                            </span>    
+                                        @endif
+                                        @if($item -> status == 'waiting')
+                                            <span style="color: yellow;">
+                                                    Waiting
+                                            </span>    
+                                        @endif
+                                        
+
+                                    </td>
                                     <td class="td_design">
                                         <a onclick="return confirm('are you sure to delete this?')" class="btn btn-danger" href="{{url('booking_delete',$item->id)}}">Delete</a>
+                                    </td>
+                                    <td>
+                                        <span style="padding-bottom: 10px;">
+                                            <a class="btn btn-success" href="{{url('approve_book',$item->id)}}">Approve</a>
+                                        </span>
+                                        
+                                        <a  class="btn btn-warning" href="{{url('reject_book',$item->id)}}">Rejected</a>
                                     </td>
                                 </tr>
                             @endforeach

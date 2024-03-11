@@ -41,3 +41,7 @@ route::post('/add_booking', [HomeController::class,'add_booking'])->name('add.bo
 route::get('/bookingdetails', [AdminController::class,'booking_details']) -> name ('bookings');
 
 route::get('/booking_delete/{id}', [AdminController::class,'booking_delete'])-> name ('bookingdelete') ;
+
+route::get('/approve_book/{id}', [AdminController::class,'approve_book'])-> name ('approvebook') ;
+
+route::get('/reject_book/{id}', [AdminController::class,'reject_book'])-> name ('rejectbook') ;

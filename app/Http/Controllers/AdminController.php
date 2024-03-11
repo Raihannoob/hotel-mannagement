@@ -115,5 +115,18 @@ public function booking_delete($id){
     return redirect()->back();
 }
 
+public function approve_book($id){
+    $data =RoomBookingDetail::find($id);
+    $data->status= 'Approved';
+    $data-> save();
+    return redirect()->back();
+}
+
+public function reject_book($id){
+    $data =RoomBookingDetail::find($id);
+    $data->status= 'Rejected';
+    $data-> save();
+    return redirect()->back();
+}
 
 }
