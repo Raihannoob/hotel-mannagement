@@ -30,7 +30,7 @@ public function add_booking(Request $request){
     $data->startDate= $request->startDate;
     $data->endDate= $request->endDate;
     $data->save();
-    return redirect()->route('home');
+    return redirect()->back()->with('message','Room Booked Succesfully');
 }
 
 
