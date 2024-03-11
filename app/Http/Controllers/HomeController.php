@@ -22,8 +22,7 @@ public function add_booking(Request $request)
         'endDate' => 'required|date|after:startDate',
     ]);
 
-    $data = new RoomBookingDetail();
-    $id = $request->id;
+    $data = new RoomBookingDetail(); 
     $data->room_id = $request->roomid;
     $data->name = $request->name;
     $data->email = $request->email;
