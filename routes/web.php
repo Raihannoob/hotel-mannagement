@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,3 +46,5 @@ route::get('/booking_delete/{id}', [AdminController::class,'booking_delete'])-> 
 route::get('/approve_book/{id}', [AdminController::class,'approve_book'])-> name ('approvebook') ;
 
 route::get('/reject_book/{id}', [AdminController::class,'reject_book'])-> name ('rejectbook') ;
+
+route::get('/send-mail', [MailController::class,'index'])-> name ('send-mail') ;
